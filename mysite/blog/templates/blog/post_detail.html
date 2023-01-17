@@ -1,4 +1,74 @@
 {% extends "blog/base.html" %}
+
+
 {% block content %}
+
+    <!--put in post title-->
+    <h1 class='posttitle loader'>{{ post.title }}</h1>
+    <!--if the post has a publish date e.g. if the post has been published and isnt just a draft-->
+    {% if post.published_date %}
+        <!--start the post date-->
+        <div class="date postdate">
+            <!--place the post date on the post-->
+            {{ post.published_date }}
+        </div>
+    <!-- else show a button that allows user to publish the post, then takes user to the publish page -->
+    {% else %}
+        <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+    {% endif %}
+
+
+    <!-- post the content -->
+    <p class='postcontent' >{{ post.text|safe|linebreaksbr }}</p>
+
+
+
+    <!--if user is authenticated / logged in-->
+    {% if user.is_authenticated %}
+        <!-- show button for edit post, the glyphicon is a pencil for edit-->
+        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <!-- show button for delete post, the glyphicon is a remove symbol -->
+        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+    {% endif %}
+    
+
+
+
+
+    <!--button for add comment to post-->
+    <hr>
+    <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    
+
+    <div class="container">
+        <!--for all comments on the post-->
+        {% for comment in post.comments.all %}
+            <!--break to give a little space between comments-->
+            <br>
+            <!-- if the user is authenticated or the comment is an approved comment-->
+            {% if user.is_authenticated or comment.approved_comment %}
+                <!--show creation date of comment-->
+                {{ comment.created_date }}
+
+                <!-- if comment not approved, you can still see the comments but other users wont be able to-->
+                {% if not comment.approved_comment %}
+                    <!-- show button for removing the comment, the glyphicon is a remove symbol -->
+                    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                    <!-- show button for approve comment, your choice, the glyphicon is an ok symbol -->
+                    <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                {% endif %}
+
+            <!--show comment text in the comments-->
+            <p>{{ comment.text|safe|linebreaks }}</p>
+            <!-- show who posted the comment-->
+            <p>Posted by: <strong>{{ comment.author }}</strong></p>
+        {% endif %}
+    <!-- if no comments have text saying no comments posted-->
+    {% empty %}
+        <p>No comments posted.</p>
+    {% endfor %}
+</div>
+
+
 
 {% endblock %}

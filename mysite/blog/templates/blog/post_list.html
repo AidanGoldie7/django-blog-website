@@ -1,4 +1,27 @@
 {% extends "blog/base.html" %}
+
+
 {% block content %}
+<!-- centerstage is being called from blog.css to center all content on page-->
+<div class = "centerstage">
+
+    {% for post in post_list %}
+        <div class="post">
+            
+            <!--clicking on the post title will take user to the post detain page-->
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <div class="date">
+                <p>Published on: {{post.published_date|date:"D M Y"}}</p>
+            </div>
+            <!--clicking on the comments will take the user to the post detail page where they can see call the comments-->
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+        </div>
+    {% endfor %}
+
+
+</div>
+
+
+
 
 {% endblock %}
