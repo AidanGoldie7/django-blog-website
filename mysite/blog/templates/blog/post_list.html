@@ -1,27 +1,39 @@
 {% extends "blog/base.html" %}
 
 
+
 {% block content %}
+
+<div class = "jumbotron mycustom-jumbotron">
 <!-- centerstage is being called from blog.css to center all content on page-->
 <div class = "centerstage">
+
 
     {% for post in post_list %}
         <div class="post">
             
             <!--clicking on the post title will take user to the post detain page-->
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <div class="date">
-                <p>Published on: {{post.published_date|date:"D M Y"}}</p>
+            <h1 style="font-size: 40px;"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <div class="date my-date">
+                
+                <!--This will post the date as dd/mm/yyyy-->
+                <p style="font-size: 15px;">Posted by: {{post.author}}</p>
+                <p style="font-size: 10px;">{{post.published_date|date:"d/m/Y"}}</p>
+                <!--this way "D M Y will print the day as Thu the month as Jan and the year as 2023-->
+                <!--<p>Published on: {{post.published_date|date:"D M Y"}}</p>-->
+
             </div>
+            
+
             <!--clicking on the comments will take the user to the post detail page where they can see call the comments-->
-            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+            <a href="{% url 'post_detail' pk=post.pk %}"><span class="glyphicon glyphicon-comment"></span> {{ post.approve_comments.count }}</a>
+            
+            <!--Putting white space below a post so they are better spread out-->
+            <p>‎</p>
         </div>
     {% endfor %}
-
-
+    
 </div>
-
-
-
+</div>
 
 {% endblock %}

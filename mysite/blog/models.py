@@ -9,7 +9,7 @@ class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
-    create_date = models.DateTimeField(default=timezone.now())
+    created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
     #method for publishing a post and giving it timestamp 
@@ -20,7 +20,7 @@ class Post(models.Model):
     #method to approve comments, 'comments' will be made later on
     #to store user comments on a post 
     def approve_comments(self):
-        return self.comments.filter(approved_comments=True)
+        return self.comments.filter(approved_comment=True)
 
     #has to be called get_absolute_url as this is what django looks 
     #for by default
@@ -39,7 +39,7 @@ class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments')
     author = models.CharField(max_length = 200)
     text = models.TextField()
-    create_date = models.DateTimeField(default=timezone.now())
+    created_date = models.DateTimeField(default=timezone.now())
     approved_comment = models.BooleanField(default=False)
 
     def approve(self):

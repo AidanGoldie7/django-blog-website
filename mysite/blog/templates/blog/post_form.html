@@ -4,7 +4,9 @@
 
     <form method="POST" class="post-form">
         {% csrf_token %}
+        <div class = "jumbotron mycustom-jumbotron">
         {{form.as_p}}
+        </div>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
     
