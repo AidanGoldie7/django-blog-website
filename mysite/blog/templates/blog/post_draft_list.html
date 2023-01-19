@@ -1,8 +1,11 @@
 {% extends "blog/base.html" %}
-
 {% block content %}
+    <h1>Drafts</h1>
+    
+    
     <!--go through all posts-->
     {% for post in posts %}
+    <div class = "jumbotron mycustom-jumbotron">
         <div class="post">
             <!-- say when it was created -->
             <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
@@ -11,5 +14,6 @@
             <!--post the blog text, truncated is used for formatting but not necesary-->
             <p>{{ post.text|truncatechars:200 }}</p>
         </div>
+    </div>
     {% endfor %}
 {% endblock %}

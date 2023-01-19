@@ -2,8 +2,10 @@
 {% block content %}
     <h1>New Post</h1>
 
+    
     <form method="POST" class="post-form">
         {% csrf_token %}
+        <!--Putting new post in jumbotron maake it look nicer-->
         <div class = "jumbotron mycustom-jumbotron">
         {{form.as_p}}
         </div>
