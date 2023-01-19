@@ -59,10 +59,10 @@
                       <a href="{% url 'post_new' %}" ><span class="glyphicon glyphicon-edit"></span>  New Post</a>
                     </li>
                     <li>
-                      <a href="{% url 'post_draft_list' %}"><span class="glyphicon glyphicon-folder-open"></span>     Drafts</a>
+                      <a href="{% url 'post_draft_list' %}"><span class="glyphicon glyphicon-inbox"></span>      Drafts</a>
                     </li>
                     <li>
-                        <a href="{% url 'logout' %}" ><span class="glyphicon glyphicon-user"></span>Log out</a>
+                        <a href="{% url 'logout' %}" ><span class="glyphicon glyphicon-user"></span> Log out</a>
                     </li>
                     <li>
                         <a >Signed in as: {{ user.username }}</a>
@@ -82,7 +82,7 @@
             {# The actual blog posts#}
             <div class="content container">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-8">
                     <div class="blog_posts">
                         {% block content %}
                         {% endblock %}

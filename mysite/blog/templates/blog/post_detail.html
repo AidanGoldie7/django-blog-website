@@ -26,9 +26,9 @@
     <!--if user is authenticated / logged in-->
     {% if user.is_authenticated %}
         <!-- show button for edit post, the glyphicon is a pencil for edit-->
-        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">Edit <span class="glyphicon glyphicon-pencil"></span></a>
         <!-- show button for delete post, the glyphicon is a remove symbol -->
-        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">Delete <span class="glyphicon glyphicon-remove"></span></a>
     {% endif %}
     
 
@@ -37,7 +37,7 @@
 
     <!--button for add comment to post-->
     <hr>
-    <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment <span class="glyphicon glyphicon-plus"></span></a>
     
 
     <div class="container">
@@ -65,7 +65,7 @@
         {% endif %}
     <!-- if no comments have text saying no comments posted-->
     {% empty %}
-        <p>No comments posted.</p>
+        <p style="opacity: 75%;">No comments posted.</p>
     {% endfor %}
 </div>
 </div>
