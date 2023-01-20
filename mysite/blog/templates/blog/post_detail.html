@@ -7,13 +7,13 @@
 
     <div class = "jumbotron mycustom-jumbotron">
     <!--put in post title-->
-    <h1 class='posttitle loader'>{{ post.title }}</h1>
+    <h1 class='posttitle loader'><strong>{{ post.title }}</strong></h1>
     <!--if the post has a publish date e.g. if the post has been published and isnt just a draft-->
     {% if post.published_date %}
         <!--start the post date-->
         <div class="date postdate">
             <!--place the post date on the post-->
-            {{ post.published_date }}
+            <em> Posted: {{ post.published_date }}</em>
         </div>
     <!-- else show a button that allows user to publish the post, then takes user to the publish page -->
     {% else %}

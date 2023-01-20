@@ -2,14 +2,16 @@
 
 .mycustom-jumbotron {
   border: 2.5px;
-  border-color:  #e0e0e0;
+  border-color:  #ff3b3b;
   border-style: solid;
-  font-size: 15px;
+  font-size: 20px;
   cursor:pointer;
   width: 1150px;
   text-align:left;
   text-indent: 10px;
   margin-top: 50;
+  background-color: goldenrod !important;
+
 }
 
 
