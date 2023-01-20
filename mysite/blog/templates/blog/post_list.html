@@ -27,12 +27,12 @@
 
             <!--clicking on the comments will take the user to the post detail page where they can see call the comments-->
             <a href="{% url 'post_detail' pk=post.pk %}"><span class="glyphicon glyphicon-comment"></span> {{ post.approve_comments.count }}</a>
-            
             <!--Putting white space below a post so they are better spread out-->
             <p>‎</p>
+            
         </div>
     {% endfor %}
-    
+
 </div>
 </div>
 

@@ -2,6 +2,9 @@
 
 
 {% block content %}
+
+
+
     <div class = "jumbotron mycustom-jumbotron">
     <!--put in post title-->
     <h1 class='posttitle loader'>{{ post.title }}</h1>
@@ -33,11 +36,10 @@
     
 
 
-
-
-    <!--button for add comment to post-->
     <hr>
-    <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment <span class="glyphicon glyphicon-plus"></span></a>
+    <a class="btn btn-primary btn-comment-left" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment <span class="glyphicon glyphicon-plus"></span></a>
+
+    
     
 
     <div class="container">
@@ -45,10 +47,9 @@
         {% for comment in post.comments.all %}
             <!--break to give a little space between comments-->
             <br>
+            <br>
             <!-- if the user is authenticated or the comment is an approved comment-->
             {% if user.is_authenticated or comment.approved_comment %}
-                <!--show creation date of comment-->
-                {{ comment.created_date }}
 
                 <!-- if comment not approved, you can still see the comments but other users wont be able to-->
                 {% if not comment.approved_comment %}
@@ -57,16 +58,26 @@
                     <!-- show button for approve comment, your choice, the glyphicon is an ok symbol -->
                     <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
                 {% endif %}
-
+            
+            
             <!--show comment text in the comments-->
-            <p>{{ comment.text|safe|linebreaks }}</p>
+            <span class="col-3 glyphicon glyphicon-comment"></span>
+            <p class="col-3 offset-1"> {{ comment.text|safe|linebreaks }}</p>
+ 
+
             <!-- show who posted the comment-->
-            <p>Posted by: <strong>{{ comment.author }}</strong></p>
+            <p style="font-size: 15px;">Posted by: <strong>{{ comment.author }}</strong></p>
+            <!--show creation date of comment-->
+            <p style="font-size: 10px;">{{ comment.created_date }}</p>
         {% endif %}
     <!-- if no comments have text saying no comments posted-->
     {% empty %}
-        <p style="opacity: 75%;">No comments posted.</p>
+    <br>
+    <br>
+    <br>
+    <p style="opacity: 75%; text-align: center;">No comments posted.</p>
     {% endfor %}
+
 </div>
 </div>
 
